@@ -1,4 +1,6 @@
-# nginx-docker
+# Docker Nginx
+
+This is images based on `alpine` linux and configured to work with php-fpm host by the default
 
 ## Nginx for usage with php-fpm
 
@@ -10,7 +12,7 @@ intvoice-www:
     image: innolend/nginx
     hostname: intvoice-server
     links:
-      - intvoice-php
+      - intvoice-php:php-fpm-host
     depends_on:
       - intvoice-php
     volumes:
