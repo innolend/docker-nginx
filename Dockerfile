@@ -2,7 +2,7 @@ FROM alpine:3.4
 
 MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"
 
-ENV NGINX_VERSION 1.12.0
+ENV NGINX_VERSION 1.13.0
 
 RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& CONFIG="\
@@ -135,8 +135,10 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 	&& mkdir /opt \
 	&& mkdir /opt/project
 
+COPY conf.d /etc/nginx/conf.d
+COPY sites-available /etc/nginx/sites-available
+COPY mime.types /etc/nginx/mime.types
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80 443
 
